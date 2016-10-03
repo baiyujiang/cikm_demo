@@ -21,12 +21,16 @@ if __name__ == "__main__":
 
     #Inputs
     #jsonfile = ('data/brad_pitt.json')
-    jsonfile = 'data/dblp-subgraph.json'
+    did = 'dblp-subgraph'
+    jsonfile = './data/' + did + '.json'
+    matfile = './data/' + did + '.mat'
+
     # currentTeam = [200, 382, 144, 377, 194, 228, 426, 368, 440, 555]
     currentTeam = [200, 144, 194, 228]
 
     #Load data
-    jsonToMat(jsonfile)
+    if not os.path.isfile(matfile):
+        jsonToMat(jsonfile)
     mat = scipy.io.loadmat(os.path.splitext(jsonfile)[0])
     aa = mat['aa']
     aa = maximum(aa, aa.T)
